@@ -1,0 +1,191 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  font-size: 16px;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/*Track: caminho da barra*/
+::-webkit-scrollbar-track {
+  background-color: #2c2c31;
+}
+
+/*Barra que percorre a lateral*/
+::-webkit-scrollbar-thumb {
+  background-image: linear-gradient(170deg, blue, red, yellow);
+  border-radius: 20px;
+}
+
+@keyframes entering {
+  from {
+    opacity: 0;
+    transform: translateY(-200px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+body {
+  background-color: rgb(6, 6, 6);
+  color: #eaeaea;
+  font-family: "Roboto", sans-serif;
+
+  display: grid;
+  grid-template-areas: "profile timeline";
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 100vh;
+}
+
+aside {
+  grid-area: profile;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Horizontal */
+  justify-content: center; /*Vertical */
+  gap: 20px;
+
+  border-right: 1px solid;
+  border-image: linear-gradient(#727275, #2c2c31, 1);
+
+  background-image: url("./assets/background.svg");
+  background-position: top right;
+  background-repeat: no-repeat;
+  background-size: auto 100;
+}
+
+/*Seleciona todos os elementos dentro do aside(somente dentro)
+a linha e o background permaneceme fixos*/
+aside * {
+  animation: entering 0.7s ease-in-out;
+}
+
+aside img:nth-child(2) {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+
+  border: 4px solid transparent;
+  background: linear-gradient(#d39e33, #ed5636, #633bbc) padding-box,
+    linear-gradient(260deg, #d39e33, #ed5636, #633bbc) border-box;
+}
+
+aside p {
+  font-size: 2rem;
+  text-align: center;
+}
+
+aside span {
+  font-size: 0.75rem;
+  color: #9e9ea0;
+}
+
+aside span a {
+  text-decoration: none;
+  color: #9e9ea0;
+}
+
+aside span a:visited {
+  text-decoration: none;
+  color: #9e9ea0;
+}
+
+aside span a:hover {
+  color: #633bbc;
+}
+
+nav {
+  padding: 64px;
+  grid-area: timeline;
+  overflow-y: scroll;
+
+  animation: entering 0.7s ease-in-out;
+}
+
+nav a:visited {
+  text-decoration: none;
+  color: #bebebf;
+}
+
+.memory {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  text-decoration: none;
+  margin-bottom: 64px;
+}
+
+.memory small {
+  color: #bebeff;
+  font-size: 0.7rem;
+  line-height: 24px;
+  text-decoration: none;
+}
+
+.memory h1 {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+/*Foi adicionado uma div antes da img para fazer um efeito zoom*/
+.memory div {
+  width: 100%;
+  height: 280px;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.memory img {
+  object-fit: cover;
+  width: 100%;
+  height: 280px;
+  border-radius: 8px;
+
+  transition: transform 0.3s ease-in-out;
+}
+
+/*aumenta a imagem em 10%*/
+.memory:hover img {
+  transform: scale(1.1);
+}
+
+.memory p {
+  font-size: 1.2rem;
+  color: #bebebf;
+  line-height: 28px;
+}
+
+/*Enquanto meu site estiver em até 768 px adicione essas propriedades*/
+@media (max-width: 768px) {
+  :root {
+    font-size:14px;
+  }
+
+  body {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "profile"
+      "timeline";
+  }
+
+  aside {
+    border-right: none;
+    padding: 22px 12px;
+    text-align: center;
+    font-size: 1rem;
+  }
+
+  nav {
+    overflow-y: visible;
+  }
+}
